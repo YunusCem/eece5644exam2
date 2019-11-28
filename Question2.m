@@ -92,7 +92,7 @@ for i = 1:perceptrons
             Ntrain1 = length(indTrain); Nvalidate = length(indValidate);
             %MLP
             if j==2
-                MLP.layers{1}.transferFcn = 'poslin';
+                MLP.layers{1}.transferFcn = 'softplus';
             else
                 MLP.layers{1}.transferFcn = 'logsig';
             end
