@@ -91,7 +91,7 @@ legend("Label 1","Label 2", "Label 3", "Label 4")
 
 %MAP Classifier
 %Loss Function
-lambda = [0 1 1 1;1 0 1 1;1 1 0 1;1 1 1 0]; 
+lambda = [0 1 1 1; 1 0 1 1; 1 1 0 1; 1 1 1 0]; 
 %Threshold/decision determination
 g1 = lambda(1,1)*evalGaussian(x4,m(:,1),Sigma(:,:,1))*p(1) + lambda(1,2)*evalGaussian(x4,m(:,2),Sigma(:,:,2))*p(2) + lambda(1,3)*evalGaussian(x4,m(:,3),Sigma(:,:,3))*p(3) + lambda(1,4)*evalGaussian(x4,m(:,4),Sigma(:,:,4))*p(4);
 g2 = lambda(2,1)*evalGaussian(x4,m(:,1),Sigma(:,:,1))*p(1) + lambda(2,2)*evalGaussian(x4,m(:,2),Sigma(:,:,2))*p(2) + lambda(2,3)*evalGaussian(x4,m(:,3),Sigma(:,:,3))*p(3) + lambda(2,4)*evalGaussian(x4,m(:,4),Sigma(:,:,4))*p(4);
@@ -111,28 +111,32 @@ for i = 1:N4
     end
 end
 
+
+
 %Plotting the decisions versus the actual labels
 figure(2)
 scatter3(x4(1,decision==1&label4==1),x4(2,decision==1&label4==1),x4(3,decision==1&label4==1),'ob'); hold on
-scatter3(x4(1,decision==2&label4==1),x4(2,decision==2&label4==1),x4(3,decision==2&label4==1),'pr');
-scatter3(x4(1,decision==3&label4==1),x4(2,decision==3&label4==1),x4(3,decision==3&label4==1),'pk');
-scatter3(x4(1,decision==4&label4==1),x4(2,decision==4&label4==1),x4(3,decision==4&label4==1),'pg');
-scatter3(x4(1,decision==1&label4==2),x4(2,decision==1&label4==2),x4(3,decision==1&label4==2),'pb');
+scatter3(x4(1,decision==2&label4==1),x4(2,decision==2&label4==1),x4(3,decision==2&label4==1),'pb');
+scatter3(x4(1,decision==3&label4==1),x4(2,decision==3&label4==1),x4(3,decision==3&label4==1),'pb');
+scatter3(x4(1,decision==4&label4==1),x4(2,decision==4&label4==1),x4(3,decision==4&label4==1),'pb');
+scatter3(x4(1,decision==1&label4==2),x4(2,decision==1&label4==2),x4(3,decision==1&label4==2),'pr');
 scatter3(x4(1,decision==2&label4==2),x4(2,decision==2&label4==2),x4(3,decision==2&label4==2),'or');
-scatter3(x4(1,decision==3&label4==2),x4(2,decision==3&label4==2),x4(3,decision==3&label4==2),'pk');
-scatter3(x4(1,decision==4&label4==2),x4(2,decision==4&label4==2),x4(3,decision==4&label4==2),'pg');
-scatter3(x4(1,decision==1&label4==3),x4(2,decision==1&label4==3),x4(3,decision==1&label4==3),'pb');
-scatter3(x4(1,decision==2&label4==3),x4(2,decision==2&label4==3),x4(3,decision==2&label4==3),'pr');
+scatter3(x4(1,decision==3&label4==2),x4(2,decision==3&label4==2),x4(3,decision==3&label4==2),'pr');
+scatter3(x4(1,decision==4&label4==2),x4(2,decision==4&label4==2),x4(3,decision==4&label4==2),'pr');
+scatter3(x4(1,decision==1&label4==3),x4(2,decision==1&label4==3),x4(3,decision==1&label4==3),'pk');
+scatter3(x4(1,decision==2&label4==3),x4(2,decision==2&label4==3),x4(3,decision==2&label4==3),'pk');
 scatter3(x4(1,decision==3&label4==3),x4(2,decision==3&label4==3),x4(3,decision==3&label4==3),'ok');
-scatter3(x4(1,decision==4&label4==3),x4(2,decision==4&label4==3),x4(3,decision==4&label4==3),'pg');
-scatter3(x4(1,decision==1&label4==4),x4(2,decision==1&label4==4),x4(3,decision==1&label4==4),'pb');
-scatter3(x4(1,decision==2&label4==4),x4(2,decision==2&label4==4),x4(3,decision==2&label4==4),'pr');
-scatter3(x4(1,decision==3&label4==4),x4(2,decision==3&label4==4),x4(3,decision==3&label4==4),'pk');
+scatter3(x4(1,decision==4&label4==3),x4(2,decision==4&label4==3),x4(3,decision==4&label4==3),'pk');
+scatter3(x4(1,decision==1&label4==4),x4(2,decision==1&label4==4),x4(3,decision==1&label4==4),'pg');
+scatter3(x4(1,decision==2&label4==4),x4(2,decision==2&label4==4),x4(3,decision==2&label4==4),'pg');
+scatter3(x4(1,decision==3&label4==4),x4(2,decision==3&label4==4),x4(3,decision==3&label4==4),'pg');
 scatter3(x4(1,decision==4&label4==4),x4(2,decision==4&label4==4),x4(3,decision==4&label4==4),'og');
 title("Data with MAP Decisions")
 xlabel("x1") 
 ylabel("x2")
 zlabel("x3")
+
+
 
 %Counting all errors
 error = 0;
@@ -361,20 +365,20 @@ end
 %Performance of the best model from N=100 on the test set
 figure(6)
 scatter3(x4(1,vlabel1==1&label4==1),x4(2,vlabel1==1&label4==1),x4(3,vlabel1==1&label4==1),'ob'); hold on
-scatter3(x4(1,vlabel1==2&label4==1),x4(2,vlabel1==2&label4==1),x4(3,vlabel1==2&label4==1),'pr');
-scatter3(x4(1,vlabel1==3&label4==1),x4(2,vlabel1==3&label4==1),x4(3,vlabel1==3&label4==1),'pk');
-scatter3(x4(1,vlabel1==4&label4==1),x4(2,vlabel1==4&label4==1),x4(3,vlabel1==4&label4==1),'pg');
-scatter3(x4(1,vlabel1==1&label4==2),x4(2,vlabel1==1&label4==2),x4(3,vlabel1==1&label4==2),'pb');
+scatter3(x4(1,vlabel1==2&label4==1),x4(2,vlabel1==2&label4==1),x4(3,vlabel1==2&label4==1),'pb');
+scatter3(x4(1,vlabel1==3&label4==1),x4(2,vlabel1==3&label4==1),x4(3,vlabel1==3&label4==1),'pb');
+scatter3(x4(1,vlabel1==4&label4==1),x4(2,vlabel1==4&label4==1),x4(3,vlabel1==4&label4==1),'pb');
+scatter3(x4(1,vlabel1==1&label4==2),x4(2,vlabel1==1&label4==2),x4(3,vlabel1==1&label4==2),'pr');
 scatter3(x4(1,vlabel1==2&label4==2),x4(2,vlabel1==2&label4==2),x4(3,vlabel1==2&label4==2),'or');
-scatter3(x4(1,vlabel1==3&label4==2),x4(2,vlabel1==3&label4==2),x4(3,vlabel1==3&label4==2),'pk');
-scatter3(x4(1,vlabel1==4&label4==2),x4(2,vlabel1==4&label4==2),x4(3,vlabel1==4&label4==2),'pg');
-scatter3(x4(1,vlabel1==1&label4==3),x4(2,vlabel1==1&label4==3),x4(3,vlabel1==1&label4==3),'pb');
-scatter3(x4(1,vlabel1==2&label4==3),x4(2,vlabel1==2&label4==3),x4(3,vlabel1==2&label4==3),'pr');
+scatter3(x4(1,vlabel1==3&label4==2),x4(2,vlabel1==3&label4==2),x4(3,vlabel1==3&label4==2),'pr');
+scatter3(x4(1,vlabel1==4&label4==2),x4(2,vlabel1==4&label4==2),x4(3,vlabel1==4&label4==2),'pr');
+scatter3(x4(1,vlabel1==1&label4==3),x4(2,vlabel1==1&label4==3),x4(3,vlabel1==1&label4==3),'pk');
+scatter3(x4(1,vlabel1==2&label4==3),x4(2,vlabel1==2&label4==3),x4(3,vlabel1==2&label4==3),'pk');
 scatter3(x4(1,vlabel1==3&label4==3),x4(2,vlabel1==3&label4==3),x4(3,vlabel1==3&label4==3),'ok');
-scatter3(x4(1,vlabel1==4&label4==3),x4(2,vlabel1==4&label4==3),x4(3,vlabel1==4&label4==3),'pg');
-scatter3(x4(1,vlabel1==1&label4==4),x4(2,vlabel1==1&label4==4),x4(3,vlabel1==1&label4==4),'pb');
-scatter3(x4(1,vlabel1==2&label4==4),x4(2,vlabel1==2&label4==4),x4(3,vlabel1==2&label4==4),'pr');
-scatter3(x4(1,vlabel1==3&label4==4),x4(2,vlabel1==3&label4==4),x4(3,vlabel1==3&label4==4),'pk');
+scatter3(x4(1,vlabel1==4&label4==3),x4(2,vlabel1==4&label4==3),x4(3,vlabel1==4&label4==3),'pk');
+scatter3(x4(1,vlabel1==1&label4==4),x4(2,vlabel1==1&label4==4),x4(3,vlabel1==1&label4==4),'pg');
+scatter3(x4(1,vlabel1==2&label4==4),x4(2,vlabel1==2&label4==4),x4(3,vlabel1==2&label4==4),'pg');
+scatter3(x4(1,vlabel1==3&label4==4),x4(2,vlabel1==3&label4==4),x4(3,vlabel1==3&label4==4),'pg');
 scatter3(x4(1,vlabel1==4&label4==4),x4(2,vlabel1==4&label4==4),x4(3,vlabel1==4&label4==4),'og');
 title("Data with N=100 MLP Decisions")
 xlabel("x1") 
@@ -384,20 +388,20 @@ zlabel("x3")
 %Performance of the best model from N=1000 on the test set
 figure(7)
 scatter3(x4(1,vlabel2==1&label4==1),x4(2,vlabel2==1&label4==1),x4(3,vlabel2==1&label4==1),'ob'); hold on
-scatter3(x4(1,vlabel2==2&label4==1),x4(2,vlabel2==2&label4==1),x4(3,vlabel2==2&label4==1),'pr');
-scatter3(x4(1,vlabel2==3&label4==1),x4(2,vlabel2==3&label4==1),x4(3,vlabel2==3&label4==1),'pk');
-scatter3(x4(1,vlabel2==4&label4==1),x4(2,vlabel2==4&label4==1),x4(3,vlabel2==4&label4==1),'pg');
-scatter3(x4(1,vlabel2==1&label4==2),x4(2,vlabel2==1&label4==2),x4(3,vlabel2==1&label4==2),'pb');
+scatter3(x4(1,vlabel2==2&label4==1),x4(2,vlabel2==2&label4==1),x4(3,vlabel2==2&label4==1),'pb');
+scatter3(x4(1,vlabel2==3&label4==1),x4(2,vlabel2==3&label4==1),x4(3,vlabel2==3&label4==1),'pb');
+scatter3(x4(1,vlabel2==4&label4==1),x4(2,vlabel2==4&label4==1),x4(3,vlabel2==4&label4==1),'pb');
+scatter3(x4(1,vlabel2==1&label4==2),x4(2,vlabel2==1&label4==2),x4(3,vlabel2==1&label4==2),'pr');
 scatter3(x4(1,vlabel2==2&label4==2),x4(2,vlabel2==2&label4==2),x4(3,vlabel2==2&label4==2),'or');
-scatter3(x4(1,vlabel2==3&label4==2),x4(2,vlabel2==3&label4==2),x4(3,vlabel2==3&label4==2),'pk');
-scatter3(x4(1,vlabel2==4&label4==2),x4(2,vlabel2==4&label4==2),x4(3,vlabel2==4&label4==2),'pg');
-scatter3(x4(1,vlabel2==1&label4==3),x4(2,vlabel2==1&label4==3),x4(3,vlabel2==1&label4==3),'pb');
-scatter3(x4(1,vlabel2==2&label4==3),x4(2,vlabel2==2&label4==3),x4(3,vlabel2==2&label4==3),'pr');
+scatter3(x4(1,vlabel2==3&label4==2),x4(2,vlabel2==3&label4==2),x4(3,vlabel2==3&label4==2),'pr');
+scatter3(x4(1,vlabel2==4&label4==2),x4(2,vlabel2==4&label4==2),x4(3,vlabel2==4&label4==2),'pr');
+scatter3(x4(1,vlabel2==1&label4==3),x4(2,vlabel2==1&label4==3),x4(3,vlabel2==1&label4==3),'pk');
+scatter3(x4(1,vlabel2==2&label4==3),x4(2,vlabel2==2&label4==3),x4(3,vlabel2==2&label4==3),'pk');
 scatter3(x4(1,vlabel2==3&label4==3),x4(2,vlabel2==3&label4==3),x4(3,vlabel2==3&label4==3),'ok');
-scatter3(x4(1,vlabel2==4&label4==3),x4(2,vlabel2==4&label4==3),x4(3,vlabel2==4&label4==3),'pg');
-scatter3(x4(1,vlabel2==1&label4==4),x4(2,vlabel2==1&label4==4),x4(3,vlabel2==1&label4==4),'pb');
-scatter3(x4(1,vlabel2==2&label4==4),x4(2,vlabel2==2&label4==4),x4(3,vlabel2==2&label4==4),'pr');
-scatter3(x4(1,vlabel2==3&label4==4),x4(2,vlabel2==3&label4==4),x4(3,vlabel2==3&label4==4),'pk');
+scatter3(x4(1,vlabel2==4&label4==3),x4(2,vlabel2==4&label4==3),x4(3,vlabel2==4&label4==3),'pk');
+scatter3(x4(1,vlabel2==1&label4==4),x4(2,vlabel2==1&label4==4),x4(3,vlabel2==1&label4==4),'pg');
+scatter3(x4(1,vlabel2==2&label4==4),x4(2,vlabel2==2&label4==4),x4(3,vlabel2==2&label4==4),'pg');
+scatter3(x4(1,vlabel2==3&label4==4),x4(2,vlabel2==3&label4==4),x4(3,vlabel2==3&label4==4),'pg');
 scatter3(x4(1,vlabel2==4&label4==4),x4(2,vlabel2==4&label4==4),x4(3,vlabel2==4&label4==4),'og');
 title("Data with N=1000 MLP Decisions")
 xlabel("x1") 
@@ -407,20 +411,20 @@ zlabel("x3")
 %Performance of the best model from N=10000 on the test set
 figure(8)
 scatter3(x4(1,vlabel3==1&label4==1),x4(2,vlabel3==1&label4==1),x4(3,vlabel3==1&label4==1),'ob'); hold on
-scatter3(x4(1,vlabel3==2&label4==1),x4(2,vlabel3==2&label4==1),x4(3,vlabel3==2&label4==1),'pr');
-scatter3(x4(1,vlabel3==3&label4==1),x4(2,vlabel3==3&label4==1),x4(3,vlabel3==3&label4==1),'pk');
-scatter3(x4(1,vlabel3==4&label4==1),x4(2,vlabel3==4&label4==1),x4(3,vlabel3==4&label4==1),'pg');
-scatter3(x4(1,vlabel3==1&label4==2),x4(2,vlabel3==1&label4==2),x4(3,vlabel3==1&label4==2),'pb');
+scatter3(x4(1,vlabel3==2&label4==1),x4(2,vlabel3==2&label4==1),x4(3,vlabel3==2&label4==1),'pb');
+scatter3(x4(1,vlabel3==3&label4==1),x4(2,vlabel3==3&label4==1),x4(3,vlabel3==3&label4==1),'pb');
+scatter3(x4(1,vlabel3==4&label4==1),x4(2,vlabel3==4&label4==1),x4(3,vlabel3==4&label4==1),'pb');
+scatter3(x4(1,vlabel3==1&label4==2),x4(2,vlabel3==1&label4==2),x4(3,vlabel3==1&label4==2),'pr');
 scatter3(x4(1,vlabel3==2&label4==2),x4(2,vlabel3==2&label4==2),x4(3,vlabel3==2&label4==2),'or');
-scatter3(x4(1,vlabel3==3&label4==2),x4(2,vlabel3==3&label4==2),x4(3,vlabel3==3&label4==2),'pk');
-scatter3(x4(1,vlabel3==4&label4==2),x4(2,vlabel3==4&label4==2),x4(3,vlabel3==4&label4==2),'pg');
-scatter3(x4(1,vlabel3==1&label4==3),x4(2,vlabel3==1&label4==3),x4(3,vlabel3==1&label4==3),'pb');
-scatter3(x4(1,vlabel3==2&label4==3),x4(2,vlabel3==2&label4==3),x4(3,vlabel3==2&label4==3),'pr');
+scatter3(x4(1,vlabel3==3&label4==2),x4(2,vlabel3==3&label4==2),x4(3,vlabel3==3&label4==2),'pr');
+scatter3(x4(1,vlabel3==4&label4==2),x4(2,vlabel3==4&label4==2),x4(3,vlabel3==4&label4==2),'pr');
+scatter3(x4(1,vlabel3==1&label4==3),x4(2,vlabel3==1&label4==3),x4(3,vlabel3==1&label4==3),'pk');
+scatter3(x4(1,vlabel3==2&label4==3),x4(2,vlabel3==2&label4==3),x4(3,vlabel3==2&label4==3),'pk');
 scatter3(x4(1,vlabel3==3&label4==3),x4(2,vlabel3==3&label4==3),x4(3,vlabel3==3&label4==3),'ok');
-scatter3(x4(1,vlabel3==4&label4==3),x4(2,vlabel3==4&label4==3),x4(3,vlabel3==4&label4==3),'pg');
-scatter3(x4(1,vlabel3==1&label4==4),x4(2,vlabel3==1&label4==4),x4(3,vlabel3==1&label4==4),'pb');
-scatter3(x4(1,vlabel3==2&label4==4),x4(2,vlabel3==2&label4==4),x4(3,vlabel3==2&label4==4),'pr');
-scatter3(x4(1,vlabel3==3&label4==4),x4(2,vlabel3==3&label4==4),x4(3,vlabel3==3&label4==4),'pk');
+scatter3(x4(1,vlabel3==4&label4==3),x4(2,vlabel3==4&label4==3),x4(3,vlabel3==4&label4==3),'pk');
+scatter3(x4(1,vlabel3==1&label4==4),x4(2,vlabel3==1&label4==4),x4(3,vlabel3==1&label4==4),'pg');
+scatter3(x4(1,vlabel3==2&label4==4),x4(2,vlabel3==2&label4==4),x4(3,vlabel3==2&label4==4),'pg');
+scatter3(x4(1,vlabel3==3&label4==4),x4(2,vlabel3==3&label4==4),x4(3,vlabel3==3&label4==4),'pg');
 scatter3(x4(1,vlabel3==4&label4==4),x4(2,vlabel3==4&label4==4),x4(3,vlabel3==4&label4==4),'og');
 title("Data with N=10000 MLP Decisions")
 xlabel("x1") 
